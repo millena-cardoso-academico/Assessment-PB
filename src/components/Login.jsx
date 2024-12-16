@@ -32,7 +32,7 @@ function Login() {
           <input
             id="username"
             type="text"
-            className="w-full p-2 border rounded text-gray-800 dark:text-white"
+            className="w-full p-2 border rounded text-gray-800"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -43,7 +43,7 @@ function Login() {
           <input
             id="password"
             type="password"
-            className="w-full p-2 border rounded text-gray-800 dark:text-white"
+            className="w-full p-2 border rounded text-gray-800"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

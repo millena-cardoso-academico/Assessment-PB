@@ -47,7 +47,7 @@ function Register() {
           <label className="block text-white dark:text-gray-800 mb-2">Usuário</label>
           <input
             type="text"
-            className="w-full p-2 border rounded text-gray-800 dark:text-white"
+            className="w-full p-2 border rounded text-gray-800"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -57,7 +57,7 @@ function Register() {
           <label className="block text-white dark:text-gray-800 mb-2">Senha</label>
           <input
             type="password"
-            className="w-full p-2 border rounded text-gray-800 dark:text-white"
+            className="w-full p-2 border rounded text-gray-800"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -67,7 +67,7 @@ function Register() {
           <label className="block text-white dark:text-gray-800 mb-2">Confirmar Senha</label>
           <input
             type="password"
-            className="w-full p-2 border rounded text-gray-800 dark:text-white"
+            className="w-full p-2 border rounded text-gray-800"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required

@@ -313,7 +313,6 @@ export async function getLimitUsage(username) {
     };
   } catch (error) {
     console.error('Erro em getLimitUsage:', error);
-    throw error;
   }
 }
 

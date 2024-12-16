@@ -35,36 +35,43 @@ function Profile() {
   const parseDateTime = (dateTimeStr) => {
     if (!dateTimeStr) {
       console.error('parseDateTime: dateTimeStr is undefined or null');
-      return null;
+      return new Date(); 
     }
 
-    let parsedDate = null;
-
     if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?(\.\d+)?Z$/.test(dateTimeStr)) {
-      parsedDate = new Date(dateTimeStr);
-    } else if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}(:\d{2})?$/.test(dateTimeStr)) {
+      const parsedDate = new Date(dateTimeStr);
+      if (!isNaN(parsedDate)) {
+        return parsedDate;
+      } else {
+        console.error(`parseDateTime: Invalid ISO date - ${dateTimeStr}`);
+        return new Date();
+      }
+    }
+
+    if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}(:\d{2})?$/.test(dateTimeStr)) {
       const isoString = dateTimeStr.replace(' ', 'T') + 'Z';
-      parsedDate = new Date(isoString);
-    } else if (/^\d{2}\/\d{2}\/\d{4}( \d{2}:\d{2}(:\d{2})?)?$/.test(dateTimeStr)) {
+      const parsedDate = new Date(isoString);
+      if (!isNaN(parsedDate)) {
+        return parsedDate;
+      } else {
+        console.error(`parseDateTime: Invalid date - ${dateTimeStr}`);
+        return new Date();
+      }
+    }
+
+    if (/^\d{2}\/\d{2}\/\d{4}( \d{2}:\d{2}(:\d{2})?)?$/.test(dateTimeStr)) {
       const [date, time] = dateTimeStr.split(' ');
       const [day, month, year] = date.split('/');
       if (time) {
         const [hours, minutes, seconds] = time.split(':');
-        parsedDate = new Date(year, month - 1, day, hours, minutes, seconds || 0);
+        return new Date(year, month - 1, day, hours, minutes, seconds || 0);
       } else {
-        parsedDate = new Date(year, month - 1, day);
+        return new Date(year, month - 1, day);
       }
-    } else {
-      console.error(`parseDateTime: Unknown dateTimeStr format - ${dateTimeStr}`);
-      return null;
     }
 
-    if (isNaN(parsedDate)) {
-      console.error(`parseDateTime: Invalid date - ${dateTimeStr}`);
-      return null;
-    }
-
-    return parsedDate;
+    console.error(`parseDateTime: Unknown dateTimeStr format - ${dateTimeStr}`);
+    return new Date();
   };
 
   useEffect(() => {
