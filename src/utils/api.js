@@ -188,6 +188,10 @@ export async function purchase(username) {
 
   const userPlan = await getUserPlan(username);
 
+  if (!userPlan) {
+    throw new Error('Por favor, compre um plano primeiro.');
+  }
+
   const purchasedCount = await db.purchased_movies
     .where('user_id')
     .equals(user.id)
